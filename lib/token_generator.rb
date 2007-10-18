@@ -3,7 +3,7 @@ module TokenGenerator
     constant = "#{self.class.name}#{id}"
 
     begin
-      token = CGI::Session.generate_unique_id(constant)
+      token = CGI::Session.generate_unique_id(constant).first(size)
     end while !validity.call(token) if block_given?
 
     token
